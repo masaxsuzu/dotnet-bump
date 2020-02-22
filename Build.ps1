@@ -49,7 +49,6 @@ function Run {
 	Assert "major" "1.2.3" "2.0.0"
 	Assert "minor" "1.2.3" "1.3.0"
 	Assert "patch" "1.2.3" "1.2.4"
-
 }
 
 Run
