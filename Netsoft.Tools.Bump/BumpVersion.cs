@@ -12,45 +12,48 @@ namespace Netsoft.Tools.Bump
 
         public static string UpMajor(string current)
         {
-            int[] version = Split(current);
-            version[_majorIndex]++;
-            version[_minorIndex] = 0;
-            version[_patchIndex] = 0;
-
-            return string.Join('.', version);
+            var version = TryFormat(current);
+            return new Version(
+                version.Major + 1,
+                0,
+                0,
+                Math.Max(0, version.Revision)).ToString();
         }
 
         public static string UpMinor(string current)
         {
-            int[] version = Split(current);
-            version[_minorIndex]++;
-            version[_patchIndex] = 0;
-
-            return string.Join('.', version);
+            var version = TryFormat(current);
+            return new Version(
+                version.Major,
+                version.Minor + 1,
+                0,
+                Math.Max(0, version.Revision)).ToString();
         }
 
         public static string UpPatch(string current)
         {
-            int[] version = Split(current);
-            version[_patchIndex]++;
-            return string.Join('.', version);
+            var version = TryFormat(current);
+            return new Version(
+                version.Major,
+                version.Minor,
+                Math.Max(0, version.Build) + 1,
+                Math.Max(0, version.Revision)).ToString();
         }
 
-        private static int[] Split(string current)
+        private static Version TryFormat(string current)
         {
-            string[] version = current.Split(new char[] { '.' });
-            if (version.Length <= _patchIndex)
+            try
             {
-                throw new Exceptions.InvalidVersionSuppliedException("Version must be more than 3 digits.");
+                return new Version(current);
             }
-            return version.Select(s =>
-                {
-                    if (!int.TryParse(s, out int n))
-                    {
-                        throw new Exceptions.InvalidVersionSuppliedException("Version must be more than 3 digits.");
-                    }
-                    return n;
-                }).ToArray();
+            catch(System.ArgumentException)
+            {
+                throw new Exceptions.InvalidVersionSuppliedException("Version string was less than 2 digits.");
+            }
+            catch (System.FormatException ex)
+            {
+                throw new Exceptions.InvalidVersionSuppliedException(ex.Message);
+            }
         }
     }
 }

@@ -44,11 +44,12 @@ function Assert-Error{
 function Run {
 	dotnet test /p:configuration="Release"
 
-	Assert-Error "major" "1.2" "Version must be more than 3 digits."
+	Assert-Error "major" "1"	"Version string was less than 2 digits."
+	Assert-Error "major" "1.x"	"Input string was not in a correct format."
 
-	Assert "major" "1.2.3" "2.0.0"
-	Assert "minor" "1.2.3" "1.3.0"
-	Assert "patch" "1.2.3" "1.2.4"
+	Assert "major" "1.2.3" "2.0.0.0"
+	Assert "minor" "1.2.3" "1.3.0.0"
+	Assert "patch" "1.2.3" "1.2.4.0"
 }
 
 Run
