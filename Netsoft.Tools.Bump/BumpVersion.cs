@@ -8,10 +8,6 @@ namespace Netsoft.Tools.Bump
 {
     public static class BumpVersion
     {
-        const int _majorIndex = 0;
-        const int _minorIndex = 1;
-        const int _patchIndex = 2;
-
         public static string UpMajor(string current)
         {
             return TryFormat(current)
