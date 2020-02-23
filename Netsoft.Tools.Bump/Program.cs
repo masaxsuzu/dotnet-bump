@@ -29,7 +29,7 @@ namespace Netsoft.Tools.Bump
 
                 Console.WriteLine(newVersion);
             }
-            catch (Exceptions.InvalidVersionSuppliedException ex)
+            catch (ArgumentException ex)
             {
                 return ExitWith(ex.Message, Console.Error);
             }

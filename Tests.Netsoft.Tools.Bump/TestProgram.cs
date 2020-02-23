@@ -46,7 +46,7 @@ namespace Tests.Netsoft.Tools.Bump
 
                     _ = Program.Main(args);
                 }
-                var got = Encoding.UTF8.GetString(mem.ToArray());
+                string got = Encoding.UTF8.GetString(mem.ToArray());
                 Assert.Equal(want, got);
             }
         }
@@ -65,7 +65,7 @@ namespace Tests.Netsoft.Tools.Bump
 
                     _ = Program.Main(args);
                 }
-                var got = Encoding.UTF8.GetString(mem.ToArray());
+                string got = Encoding.UTF8.GetString(mem.ToArray());
                 Assert.Equal(want, got);
             }
         }

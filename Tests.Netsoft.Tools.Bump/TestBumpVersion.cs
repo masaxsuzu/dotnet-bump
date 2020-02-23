@@ -1,5 +1,4 @@
 using Netsoft.Tools.Bump;
-using Netsoft.Tools.Bump.Exceptions;
 using System;
 using Xunit;
 
@@ -46,9 +45,9 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData("y")]
         public void TestErrorIfInvalidVersionSupplied(string from)
         {
-            _ = Assert.Throws<InvalidVersionSuppliedException>(() => _ = BumpVersion.UpMajor(from));
-            _ = Assert.Throws<InvalidVersionSuppliedException>(() => _ = BumpVersion.UpMinor(from));
-            _ = Assert.Throws<InvalidVersionSuppliedException>(() => _ = BumpVersion.UpPatch(from));
+            _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.UpMajor(from));
+            _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.UpMinor(from));
+            _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.UpPatch(from));
         }
 
     }
