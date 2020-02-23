@@ -16,7 +16,7 @@ namespace Netsoft.Tools.Bump
         {
             return TryFormat(current)
                 .Into()
-                .UpMajor()
+                .UpMajorVersion()
                 .ToString();
         }
 
@@ -24,7 +24,7 @@ namespace Netsoft.Tools.Bump
         {
             return TryFormat(current)
                 .Into()
-                .UpMinor()
+                .UpMinorVersion()
                 .ToString();
         }
 
@@ -32,15 +32,15 @@ namespace Netsoft.Tools.Bump
         {
             return TryFormat(current)
                 .Into()
-                .UpPatch()
+                .UpPatchVersion()
                 .ToString();
         }
 
         private static MyVersion Into(this Version version)
         {
             return new Versioning.MyVersion(version.Major, version.Minor)
-                .WithPatch(version.Build)
-                .WithBuild(version.Revision);
+                .WithPatchVersion(version.Build)
+                .WithBuildVersion(version.Revision);
         }
 
         private static Version TryFormat(string current)

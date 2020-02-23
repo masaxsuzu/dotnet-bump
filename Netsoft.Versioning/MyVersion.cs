@@ -16,7 +16,7 @@ namespace Netsoft.Versioning
             _minor = minor;
         }
 
-        public MyVersion WithPatch(int patch)
+        public MyVersion WithPatchVersion(int patch)
         {
             if (patch < 0)
             {
@@ -26,7 +26,7 @@ namespace Netsoft.Versioning
             return this;
         }
 
-        public MyVersion WithBuild(int build)
+        public MyVersion WithBuildVersion(int build)
         {
             if (build < 0)
             {
@@ -36,29 +36,29 @@ namespace Netsoft.Versioning
             return this;
         }
 
-        private MyVersion WithTag(string tag)
+        private MyVersion WithTagName(string tag)
         {
             _tag = tag;
             return this;
         }
 
-        public MyVersion UpMajor()
+        public MyVersion UpMajorVersion()
         {
             return new MyVersion(_major + 1, 0)
-                .WithPatch(0)
-                .WithBuild(_build);
+                .WithPatchVersion(0)
+                .WithBuildVersion(_build);
         }
-        public MyVersion UpMinor()
+        public MyVersion UpMinorVersion()
         {
             return new MyVersion(_major, _minor + 1)
-                .WithPatch(0)
-                .WithBuild(_build);
+                .WithPatchVersion(0)
+                .WithBuildVersion(_build);
         }
-        public MyVersion UpPatch()
+        public MyVersion UpPatchVersion()
         {
             return new MyVersion(_major, _minor)
-                .WithPatch(_patch + 1)
-                .WithBuild(_build);
+                .WithPatchVersion(_patch + 1)
+                .WithBuildVersion(_build);
         }
 
         public bool Equals(MyVersion other)
