@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Netsoft.Tools.Bump.Exceptions
 {
-    public class InvalidVersionSuppliedException:Exception
+    public class InvalidVersionSuppliedException : Exception
     {
         public InvalidVersionSuppliedException(string message) : base(message)
         {

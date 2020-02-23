@@ -38,16 +38,16 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData("1.2.4.0\r\n", "patch", "1.2.3")]
         public void TestConsoleOut(string want, params string[] args)
         {
-            using(var mem = new System.IO.MemoryStream())
+            using (var mem = new System.IO.MemoryStream())
             {
-                using(var stdout = new System.IO.StreamWriter(mem))
+                using (var stdout = new System.IO.StreamWriter(mem))
                 {
                     Console.SetOut(stdout);
 
                     _ = Program.Main(args);
                 }
                 var got = Encoding.UTF8.GetString(mem.ToArray());
-                Assert.Equal(want,got);
+                Assert.Equal(want, got);
             }
         }
 
@@ -57,16 +57,16 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData("Arguments must be 2, but 1 supplied.\r\n", "major")]
         public void TestConsoleError(string want, params string[] args)
         {
-            using(var mem = new System.IO.MemoryStream())
+            using (var mem = new System.IO.MemoryStream())
             {
-                using(var stderr = new System.IO.StreamWriter(mem))
+                using (var stderr = new System.IO.StreamWriter(mem))
                 {
                     Console.SetError(stderr);
 
                     _ = Program.Main(args);
                 }
                 var got = Encoding.UTF8.GetString(mem.ToArray());
-                Assert.Equal(want,got);
+                Assert.Equal(want, got);
             }
         }
     }

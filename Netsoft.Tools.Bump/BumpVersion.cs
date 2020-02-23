@@ -46,7 +46,7 @@ namespace Netsoft.Tools.Bump
             {
                 return new Version(current);
             }
-            catch(System.ArgumentException)
+            catch (System.ArgumentException)
             {
                 throw new Exceptions.InvalidVersionSuppliedException("Version string was less than 2 digits.");
             }

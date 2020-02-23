@@ -9,13 +9,13 @@ namespace Tests.Netsoft.Tools.Bump
     {
         [Theory]
         [InlineData("1.2", "2.0.0.0")]
-        [InlineData("1.2.3","2.0.0.0")]
-        [InlineData("1.2.3.4","2.0.0.4")]
+        [InlineData("1.2.3", "2.0.0.0")]
+        [InlineData("1.2.3.4", "2.0.0.4")]
         public void TestUpMajor(string from, string want)
         {
             string got = BumpVersion.UpMajor(from);
 
-            Assert.Equal(want,got);
+            Assert.Equal(want, got);
         }
 
         [Theory]

@@ -26,7 +26,7 @@ namespace Netsoft.Tools.Bump
 
                     _ => currentVersion,
                 };
-                
+
                 Console.WriteLine(newVersion);
             }
             catch (Exceptions.InvalidVersionSuppliedException ex)
@@ -37,7 +37,7 @@ namespace Netsoft.Tools.Bump
             return 0;
         }
 
-        static int ExitWith(string error,TextWriter writer)
+        static int ExitWith(string error, TextWriter writer)
         {
             writer.WriteLine(error);
             return 1;
