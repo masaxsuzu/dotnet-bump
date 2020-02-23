@@ -14,10 +14,18 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData(0, "patch", "1.2.3")]
         [InlineData(0, "major", "1.2")]
 
+        public void TestMain(int want, params string[] args)
+        {
+            int got = Program.Main(args);
+
+            Assert.Equal(want, got);
+        }
+
+        [Theory]
         [InlineData(1, "major", "1.2.x")]
         [InlineData(1, "major")]
         [InlineData(1, "1.2")]
-        public void TestMain(int want, params string[] args)
+        public void TestMainError(int want, params string[] args)
         {
             int got = Program.Main(args);
 
