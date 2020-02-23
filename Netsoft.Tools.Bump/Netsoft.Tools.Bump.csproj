@@ -9,4 +9,8 @@
     <ToolCommandName>bump</ToolCommandName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Netsoft.Versioning\Netsoft.Versioning.csproj" />
+  </ItemGroup>
+
 </Project>

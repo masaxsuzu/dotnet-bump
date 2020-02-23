@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Netsoft.Versioning;
+
 namespace Netsoft.Tools.Bump
 {
     public static class BumpVersion
@@ -12,32 +14,33 @@ namespace Netsoft.Tools.Bump
 
         public static string UpMajor(string current)
         {
-            var version = TryFormat(current);
-            return new Version(
-                version.Major + 1,
-                0,
-                0,
-                Math.Max(0, version.Revision)).ToString();
+            return TryFormat(current)
+                .Into()
+                .UpMajor()
+                .ToString();
         }
 
         public static string UpMinor(string current)
         {
-            var version = TryFormat(current);
-            return new Version(
-                version.Major,
-                version.Minor + 1,
-                0,
-                Math.Max(0, version.Revision)).ToString();
+            return TryFormat(current)
+                .Into()
+                .UpMinor()
+                .ToString();
         }
 
         public static string UpPatch(string current)
         {
-            var version = TryFormat(current);
-            return new Version(
-                version.Major,
-                version.Minor,
-                Math.Max(0, version.Build) + 1,
-                Math.Max(0, version.Revision)).ToString();
+            return TryFormat(current)
+                .Into()
+                .UpPatch()
+                .ToString();
+        }
+
+        private static MyVersion Into(this Version version)
+        {
+            return new Versioning.MyVersion(version.Major, version.Minor)
+                .WithPatch(version.Build)
+                .WithBuild(version.Revision);
         }
 
         private static Version TryFormat(string current)
