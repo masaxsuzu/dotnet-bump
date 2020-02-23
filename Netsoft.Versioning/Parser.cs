@@ -1,4 +1,7 @@
 using System;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Tests.Netsoft.Versioning")]
 
 namespace Netsoft.Versioning
 {
@@ -13,7 +16,7 @@ namespace Netsoft.Versioning
             return v;
         }
 
-        public static (MyVersion, string[]) ParseVersion(string[] source)
+        internal static (MyVersion, string[]) ParseVersion(string[] source)
         {
             var (major, rest0) = ParsePositiveNumber(source);
 
@@ -64,9 +67,9 @@ namespace Netsoft.Versioning
                 rest3);
         }
 
-        public static (uint?, string[]) ParseNumber(string[] source)
+        internal static (uint?, string[]) ParseNumber(string[] source)
         {
-            if(source == null || source.Length == 0)
+            if (source == null || source.Length == 0)
             {
                 return (null, source);
             }
@@ -78,11 +81,11 @@ namespace Netsoft.Versioning
             return (n, source[1..^0]);
         }
 
-        public static (uint?, string[]) ParsePositiveNumber(string[] source)
+        internal static (uint?, string[]) ParsePositiveNumber(string[] source)
         {
             var (n, rest) = ParseNumber(source);
 
-            if(n == 0)
+            if (n == 0)
             {
                 return (null, source);
             }
