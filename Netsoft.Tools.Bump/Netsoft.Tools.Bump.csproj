@@ -6,7 +6,7 @@
     <AssemblyName>dotnet-bump</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>bump</ToolCommandName>
+    <ToolCommandName>dotnet-bump</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
