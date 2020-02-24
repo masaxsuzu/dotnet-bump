@@ -25,6 +25,10 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData(1, "major", "1.2.x")]
         [InlineData(1, "major")]
         [InlineData(1, "1.2")]
+        [InlineData(2, "version")]
+        [InlineData(2, "--version")]
+        [InlineData(2, "help")]
+        [InlineData(2, "--help")]
         public void TestMainError(int want, params string[] args)
         {
             int got = Program.Main(args);
@@ -55,6 +59,8 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData("Version string was less than 2 digits.\r\n", "major", "1")]
         [InlineData("Input string was not in a correct format.\r\n", "major", "1.2.x")]
         [InlineData("Got argument error.\r\n", "major")]
+        [InlineData("", "help")]
+        [InlineData("", "version")]
         public void TestConsoleError(string want, params string[] args)
         {
             using (var mem = new System.IO.MemoryStream())

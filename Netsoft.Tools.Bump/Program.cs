@@ -21,6 +21,10 @@ namespace Netsoft.Tools.Bump
 
             if (cmd.Tag != ParserResultType.Parsed)
             {
+                if(args != null && args.Length > 0 && IsHelpOrVersion(args[0]))
+                {
+                    return 2;
+                }
                 return ExitWith($"Got argument error.", Console.Error);
             }
 
@@ -45,6 +49,15 @@ namespace Netsoft.Tools.Bump
         {
             writer.WriteLine(error);
             return 1;
+        }
+
+        static bool IsHelpOrVersion(string arg)
+        {
+            return 
+            arg == "help" || 
+            arg =="--help" ||
+            arg =="version" ||
+            arg =="--version";
         }
     }
 }
