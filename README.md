@@ -13,6 +13,8 @@ Commands:
 
     patch      Update patch version
 
+    format     Format version
+
     help       Display more information on a specific command.
 
     version    Display version information.
@@ -31,6 +33,11 @@ $ dotnet bump minor 1.2.0
 ```
 $ dotnet bump patch 1.2.0
 1.2.1.0
+```
+
+```
+$ dotnet bump format 1.2.0.0
+1.2.0
 ```
 
 ## AUHTOR
