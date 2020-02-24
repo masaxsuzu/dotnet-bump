@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Netsoft.Tools.Bump
 {
-    interface ICommand 
+    interface ICommand
     {
         string Update();
     }
@@ -26,7 +26,7 @@ namespace Netsoft.Tools.Bump
     [Verb("minor", HelpText = "Update minor version")]
     class UpdateMinorVersionCommand : ICommand
     {
-        [Value(0, MetaName = "version", Required =true, HelpText = "(e.g. 1.2, 1.2.3, 1.2.3.4)")]
+        [Value(0, MetaName = "version", Required = true, HelpText = "(e.g. 1.2, 1.2.3, 1.2.3.4)")]
         public string Version { get; set; }
 
         public string Update()
@@ -53,7 +53,7 @@ namespace Netsoft.Tools.Bump
         public string Version { get; set; }
         public string Update()
         {
-            return BumpVersion.Format(Version);   
+            return BumpVersion.Format(Version);
         }
     }
 }

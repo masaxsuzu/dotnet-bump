@@ -42,7 +42,7 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData("2.0.0.0\r\n", "major", "1.2.3")]
         [InlineData("1.3.0.0\r\n", "minor", "1.2.3")]
         [InlineData("1.2.4.0\r\n", "patch", "1.2.3")]
-        [InlineData("1.2.3\r\n", "format",  "1.2.3.0")]
+        [InlineData("1.2.3\r\n", "format", "1.2.3.0")]
         public void TestConsoleOut(string want, params string[] args)
         {
             using (var mem = new System.IO.MemoryStream())
