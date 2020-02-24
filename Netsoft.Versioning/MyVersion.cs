@@ -60,7 +60,7 @@ namespace Netsoft.Versioning
                 .WithPatchVersion(_patch + 1)
                 .WithBuildVersion(_build);
         }
-
+        
         public bool Equals(MyVersion other)
         {
             if (other == null)
@@ -79,6 +79,14 @@ namespace Netsoft.Versioning
         public override string ToString()
         {
             return $"{_major}.{_minor}.{_patch}.{_build}";
+        }
+        public string Format()
+        {
+            if(_build !=0)
+            {
+                return $"{_major}.{_minor}.{_patch}.{_build}";
+            }
+            return $"{_major}.{_minor}.{_patch}";
         }
     }
 }

@@ -13,10 +13,12 @@ namespace Netsoft.Tools.Bump
             var cmd = Parser.Default.ParseArguments<
                 UpdateMajorVersionCommand,
                 UpdateMinorVersionCommand,
-                UpdatePatchVersionCommand>(args)
+                UpdatePatchVersionCommand,
+                FormatVersionCommand>(args)
                 .WithParsed<UpdateMajorVersionCommand>(upMajor => exitcode = Run(upMajor))
                 .WithParsed<UpdateMinorVersionCommand>(upMinor => exitcode = Run(upMinor))
                 .WithParsed<UpdatePatchVersionCommand>(upPatch => exitcode = Run(upPatch))
+                .WithParsed<FormatVersionCommand>(format => exitcode = Run(format))
                 .WithNotParsed(er => { /**/ });
 
             if (cmd.Tag != ParserResultType.Parsed)

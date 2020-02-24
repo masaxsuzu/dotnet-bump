@@ -45,4 +45,15 @@ namespace Netsoft.Tools.Bump
             return BumpVersion.UpPatch(Version);
         }
     }
+
+    [Verb("format", HelpText = "Format version")]
+    class FormatVersionCommand : ICommand
+    {
+        [Value(0, MetaName = "version", Required = true, HelpText = "(e.g. 1.2, 1.2.3, 1.2.3.4)")]
+        public string Version { get; set; }
+        public string Update()
+        {
+            return BumpVersion.Format(Version);   
+        }
+    }
 }

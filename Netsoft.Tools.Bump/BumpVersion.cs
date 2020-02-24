@@ -28,5 +28,11 @@ namespace Netsoft.Tools.Bump
                 .UpPatchVersion()
                 .ToString();
         }
+
+        public static string Format(string current)
+        {
+            return Versioning.Parser.ParseVersion(current)
+                .Format();
+        }
     }
 }

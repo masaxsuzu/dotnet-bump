@@ -40,6 +40,19 @@ namespace Tests.Netsoft.Tools.Bump
         }
 
         [Theory]
+        [InlineData("1.2", "1.2.0")]
+        [InlineData("1.2.0", "1.2.0")]
+        [InlineData("1.2.0.1", "1.2.0.1")]
+        [InlineData("1.2.3", "1.2.3")]
+        [InlineData("1.2.3.4", "1.2.3.4")]
+        public void TestFormat(string from, string want)
+        {
+            string got = BumpVersion.Format(from);
+
+            Assert.Equal(want, got);
+        }
+
+        [Theory]
         [InlineData("1")]
         [InlineData("1.x")]
         [InlineData("y")]
@@ -48,6 +61,7 @@ namespace Tests.Netsoft.Tools.Bump
             _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.UpMajor(from));
             _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.UpMinor(from));
             _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.UpPatch(from));
+            _ = Assert.Throws<ArgumentException>(() => _ = BumpVersion.Format(from));
         }
 
     }
