@@ -5,5 +5,9 @@
     <Version>2.1.0.0</Version>
     <RepoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\'))</RepoRoot>
     <PathMap>$(RepoRoot)=.</PathMap>
+    
+    <Authors>masaxsuzu</Authors>
+    <PackageDescription>This tool bumps up dotnet app version.</PackageDescription>
+    <RepositoryUrl>https://github.com/masaxsuzu/dotnet-bump</RepositoryUrl>
   </PropertyGroup>
 </Project>
