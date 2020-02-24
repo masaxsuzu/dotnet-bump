@@ -54,7 +54,7 @@ namespace Tests.Netsoft.Tools.Bump
         [Theory]
         [InlineData("Version string was less than 2 digits.\r\n", "major", "1")]
         [InlineData("Input string was not in a correct format.\r\n", "major", "1.2.x")]
-        [InlineData("Arguments must be 2, but 1 supplied.\r\n", "major")]
+        [InlineData("Got argument error.\r\n", "major")]
         public void TestConsoleError(string want, params string[] args)
         {
             using (var mem = new System.IO.MemoryStream())

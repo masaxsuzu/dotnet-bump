@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommandLine;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,33 +9,36 @@ namespace Netsoft.Tools.Bump
     {
         public static int Main(string[] args = null)
         {
-            if (args.Length < 2)
+            int exitcode = 0;
+            var cmd = Parser.Default.ParseArguments<
+                UpdateMajorVersionCommand,
+                UpdateMinorVersionCommand,
+                UpdatePatchVersionCommand>(args)
+                .WithParsed<UpdateMajorVersionCommand>(upMajor => exitcode = Run(upMajor))
+                .WithParsed<UpdateMinorVersionCommand>(upMinor => exitcode = Run(upMinor))
+                .WithParsed<UpdatePatchVersionCommand>(upPatch => exitcode = Run(upPatch))
+                .WithNotParsed(er => { /**/ });
+
+            if (cmd.Tag != ParserResultType.Parsed)
             {
-                return ExitWith($"Arguments must be 2, but {args.Length} supplied.", Console.Error);
+                return ExitWith($"Got argument error.", Console.Error);
             }
 
-            string command = args[0];
-            string currentVersion = args[1];
+            return exitcode;
+        }
 
+        static int Run(ICommand command)
+        {
             try
             {
-                string newVersion = command switch
-                {
-                    "major" => BumpVersion.UpMajor(currentVersion),
-                    "minor" => BumpVersion.UpMinor(currentVersion),
-                    "patch" => BumpVersion.UpPatch(currentVersion),
-
-                    _ => currentVersion,
-                };
-
+                string newVersion = command.Update();
                 Console.WriteLine(newVersion);
+                return 0;
             }
             catch (ArgumentException ex)
             {
                 return ExitWith(ex.Message, Console.Error);
             }
-
-            return 0;
         }
 
         static int ExitWith(string error, TextWriter writer)
