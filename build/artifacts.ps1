@@ -1,10 +1,14 @@
 function Run {
 	
-	dotnet test /p:configuration=Release
+	dotnet build -c Release
+
+	StopIfError "Build error"
+
+	dotnet test -c Release
 
 	StopIfError "Test error"
 
-	dotnet pack --output pkg /p:configuration=Release --no-build
+	dotnet pack --output pkg -c Release --no-build
 
 	StopIfError "Package error"
 
