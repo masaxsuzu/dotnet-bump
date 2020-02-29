@@ -9,9 +9,6 @@ function Run {
 	$config = $_args[0]
 
 	Set-Location ..
-	dotnet format
-
-	StopIfError "Format error"
 
 	dotnet build -c $config
 
