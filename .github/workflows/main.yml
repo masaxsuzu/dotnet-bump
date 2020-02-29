@@ -20,4 +20,4 @@ jobs:
       with:
         dotnet-version: 3.0.100
     - name: Build with dotnet
-      run: .\build\artifacts.ps1
+      run: dotnet msbuild .\build\tasks.proj /t:pack /p:configuration=Release

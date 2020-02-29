@@ -19,7 +19,7 @@ jobs:
     - name: Setup Nuget
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Build with dotnet
-      run: .\build\artifacts.ps1
+      run: dotnet msbuild .\build\tasks.proj /t:pack /p:configuration=Release
     - name: Add GPR Source
       run: nuget sources Add -Name "GPR" -Source "https://nuget.pkg.github.com/masaxsuzu/index.json" -UserName "masaxsuzu" -Password ${{ secrets.GITHUB_TOKEN_PACKAGE }}
     - name: Push to GitHub Packages

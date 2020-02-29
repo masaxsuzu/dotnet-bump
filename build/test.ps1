@@ -5,12 +5,21 @@ function Run {
 		[string[]]
 		$_args
 	)
+	
+	$config = $_args[0]
 
 	Set-Location ..
+	dotnet format
 
-	dotnet pack --output pkg -c Release --no-build
+	StopIfError "Format error"
 
-	StopIfError "Package error"
+	dotnet build -c $config
+
+	StopIfError "Build error"
+
+	dotnet test -c $config
+
+	StopIfError "Test error"
 
 }
 
