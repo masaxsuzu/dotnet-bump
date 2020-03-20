@@ -39,9 +39,9 @@ namespace Tests.Netsoft.Tools.Bump
         }
 
         [Theory]
-        [InlineData("2.0.0.0\r\n", "major", "1.2.3")]
-        [InlineData("1.3.0.0\r\n", "minor", "1.2.3")]
-        [InlineData("1.2.4.0\r\n", "patch", "1.2.3")]
+        [InlineData("2.0\r\n", "major", "1.2.3")]
+        [InlineData("1.3\r\n", "minor", "1.2.3")]
+        [InlineData("1.2.4\r\n", "patch", "1.2.3")]
         [InlineData("1.2.3\r\n", "format", "1.2.3.0")]
         public void TestConsoleOut(string want, params string[] args)
         {
