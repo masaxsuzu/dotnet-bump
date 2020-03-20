@@ -12,6 +12,7 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData(0, "major", "1.2.3")]
         [InlineData(0, "minor", "1.2.3")]
         [InlineData(0, "patch", "1.2.3")]
+        [InlineData(0, "build", "1.2.3")]
         [InlineData(0, "major", "1.2")]
         [InlineData(0, "format", "1.2")]
 
@@ -42,6 +43,7 @@ namespace Tests.Netsoft.Tools.Bump
         [InlineData("2.0\r\n", "major", "1.2.3")]
         [InlineData("1.3\r\n", "minor", "1.2.3")]
         [InlineData("1.2.4\r\n", "patch", "1.2.3")]
+        [InlineData("1.2.3.1\r\n", "build", "1.2.3")]
         [InlineData("1.2.3\r\n", "format", "1.2.3.0")]
         public void TestConsoleOut(string want, params string[] args)
         {

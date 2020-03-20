@@ -46,6 +46,17 @@ namespace Netsoft.Tools.Bump
         }
     }
 
+    [Verb("build", HelpText = "Update build version")]
+    class UpdateBuildVersionCommand : ICommand
+    {
+        [Value(0, MetaName = "version", Required = true, HelpText = "(e.g. 1.2, 1.2.3, 1.2.3.4)")]
+        public string Version { get; set; }
+        public string Update()
+        {
+            return BumpVersion.UpBuild(Version);
+        }
+    }
+    
     [Verb("format", HelpText = "Format version")]
     class FormatVersionCommand : ICommand
     {

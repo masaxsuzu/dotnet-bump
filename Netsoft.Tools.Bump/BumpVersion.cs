@@ -32,6 +32,14 @@ namespace Netsoft.Tools.Bump
                 .ToString();
         }
 
+        public static string UpBuild(string current)
+        {
+            return Parser.ParseVersion(current)
+                .UpBuildVersion()
+                .Format()
+                .ToString();
+        }
+
         public static string Format(string current)
         {
             return Versioning.Parser.ParseVersion(current)

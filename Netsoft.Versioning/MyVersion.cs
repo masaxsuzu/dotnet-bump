@@ -61,6 +61,13 @@ namespace Netsoft.Versioning
                 .WithBuildVersion(0);
         }
 
+        public MyVersion UpBuildVersion()
+        {
+            return new MyVersion(_major, _minor)
+                .WithPatchVersion(_patch)
+                .WithBuildVersion(_build + 1);
+        }
+
         public bool Equals(MyVersion other)
         {
             if (other == null)

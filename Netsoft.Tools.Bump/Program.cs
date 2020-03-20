@@ -14,10 +14,12 @@ namespace Netsoft.Tools.Bump
                 UpdateMajorVersionCommand,
                 UpdateMinorVersionCommand,
                 UpdatePatchVersionCommand,
+                UpdateBuildVersionCommand,
                 FormatVersionCommand>(args)
                 .WithParsed<UpdateMajorVersionCommand>(upMajor => exitcode = Run(upMajor))
                 .WithParsed<UpdateMinorVersionCommand>(upMinor => exitcode = Run(upMinor))
                 .WithParsed<UpdatePatchVersionCommand>(upPatch => exitcode = Run(upPatch))
+                .WithParsed<UpdateBuildVersionCommand>(upBuild => exitcode = Run(upBuild))
                 .WithParsed<FormatVersionCommand>(format => exitcode = Run(format))
                 .WithNotParsed(er => { /**/ });
 
