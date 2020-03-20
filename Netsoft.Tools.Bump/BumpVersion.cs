@@ -12,6 +12,7 @@ namespace Netsoft.Tools.Bump
         {
             return Parser.ParseVersion(current)
                 .UpMajorVersion()
+                .Format()
                 .ToString();
         }
 
@@ -19,6 +20,7 @@ namespace Netsoft.Tools.Bump
         {
             return Parser.ParseVersion(current)
                 .UpMinorVersion()
+                .Format()
                 .ToString();
         }
 
@@ -26,6 +28,7 @@ namespace Netsoft.Tools.Bump
         {
             return Parser.ParseVersion(current)
                 .UpPatchVersion()
+                .Format()
                 .ToString();
         }
 

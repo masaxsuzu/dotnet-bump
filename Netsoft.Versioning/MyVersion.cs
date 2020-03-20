@@ -46,19 +46,19 @@ namespace Netsoft.Versioning
         {
             return new MyVersion(_major + 1, 0)
                 .WithPatchVersion(0)
-                .WithBuildVersion(_build);
+                .WithBuildVersion(0);
         }
         public MyVersion UpMinorVersion()
         {
             return new MyVersion(_major, _minor + 1)
                 .WithPatchVersion(0)
-                .WithBuildVersion(_build);
+                .WithBuildVersion(0);
         }
         public MyVersion UpPatchVersion()
         {
             return new MyVersion(_major, _minor)
                 .WithPatchVersion(_patch + 1)
-                .WithBuildVersion(_build);
+                .WithBuildVersion(0);
         }
 
         public bool Equals(MyVersion other)
@@ -86,7 +86,11 @@ namespace Netsoft.Versioning
             {
                 return $"{_major}.{_minor}.{_patch}.{_build}";
             }
-            return $"{_major}.{_minor}.{_patch}";
+            if (_patch != 0)
+            {
+                return $"{_major}.{_minor}.{_patch}";
+            }
+            return $"{_major}.{_minor}";
         }
     }
 }
