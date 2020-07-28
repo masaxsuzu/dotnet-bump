@@ -16,7 +16,7 @@ namespace Netsoft.Versioning
             return v;
         }
 
-        internal static (MyVersion, string[]) ParseVersion(string[] source)
+        public static (MyVersion, string[]) ParseVersion(string[] source)
         {
             var (major, rest0) = ParsePositiveNumber(source);
 
@@ -67,7 +67,7 @@ namespace Netsoft.Versioning
                 rest3);
         }
 
-        internal static (uint?, string[]) ParseNumber(string[] source)
+        public static (uint?, string[]) ParseNumber(string[] source)
         {
             if (source == null || source.Length == 0)
             {
@@ -81,7 +81,7 @@ namespace Netsoft.Versioning
             return (n, source[1..^0]);
         }
 
-        internal static (uint?, string[]) ParsePositiveNumber(string[] source)
+        public static (uint?, string[]) ParsePositiveNumber(string[] source)
         {
             var (n, rest) = ParseNumber(source);
 

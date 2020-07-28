@@ -13,8 +13,4 @@
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Netsoft.Versioning\Netsoft.Versioning.csproj" />
-  </ItemGroup>
-
 </Project>
