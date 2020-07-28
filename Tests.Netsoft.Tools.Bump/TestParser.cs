@@ -13,13 +13,46 @@ namespace Tests.Netsoft.Versioning
         [InlineData("1.0.1", new int[] { 1, 0, 1 })]
         [InlineData("1.2.0", new int[] { 1, 2, 0 })]
         [InlineData("1.0.0", new int[] { 1, 0, 0 })]
-        public void TestParse(string s, int[] want)
+        public void TestParse01(string s, int[] want)
         {
             var got = Parser.ParseVersion(s);
 
             Assert.Equal(
                 new MyVersion(want[0], want[1])
                 .WithPatchVersion(want[2]),
+                got);
+        }
+
+        [Theory]
+        [InlineData("1.2.3-y", new int[] { 1, 2, 3 }, "y")]
+        [InlineData("1.0.1-z", new int[] { 1, 0, 1 }, "z")]
+        [InlineData("1.2.0-alpha", new int[] { 1, 2, 0 }, "alpha")]
+        [InlineData("1.0.0-beta", new int[] { 1, 0, 0 }, "beta")]
+        public void TestParse02(string s, int[] want, string tag)
+        {
+            var got = Parser.ParseVersion(s);
+
+            Assert.Equal(
+                new MyVersion(want[0], want[1])
+                .WithPatchVersion(want[2])
+                .WithTagName(tag),
+                got);
+        }
+
+        [Theory]
+        [InlineData("1.2.3.4-y", new int[] { 1, 2, 3, 4 }, "y")]
+        [InlineData("1.0.1.4-z", new int[] { 1, 0, 1, 4 }, "z")]
+        [InlineData("1.2.0.4-alpha", new int[] { 1, 2, 0, 4 }, "alpha")]
+        [InlineData("1.0.0.4-beta", new int[] { 1, 0, 0, 4 }, "beta")]
+        public void TestParse03(string s, int[] want, string tag)
+        {
+            var got = Parser.ParseVersion(s);
+
+            Assert.Equal(
+                new MyVersion(want[0], want[1])
+                .WithPatchVersion(want[2])
+                .WithBuildVersion(want[3])
+                .WithTagName(tag),
                 got);
         }
 

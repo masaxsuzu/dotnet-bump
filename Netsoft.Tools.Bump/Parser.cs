@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Tests.Netsoft.Versioning")]
@@ -39,7 +40,7 @@ namespace Netsoft.Versioning
                 rest1);
             }
 
-            var (patch, rest2) = ParseNumber(rest1);
+            var (patch, rest2) = ParseNumberWithTag(rest1);
 
             if (!patch.HasValue)
             {
@@ -49,11 +50,12 @@ namespace Netsoft.Versioning
             if (rest2.Length == 0)
             {
                 return (new MyVersion((int)major, (int)minor)
-                .WithPatchVersion((int)patch),
+                .WithPatchVersion((int)patch.Value.Item1)
+                .WithTagName(patch.Value.Item2),
                 rest2);
             }
 
-            var (build, rest3) = ParseNumber(rest2);
+            var (build, rest3) = ParseNumberWithTag(rest2);
 
             if (!build.HasValue)
             {
@@ -62,8 +64,9 @@ namespace Netsoft.Versioning
 
             return (
                 new MyVersion((int)major, (int)minor)
-                .WithPatchVersion((int)patch)
-                .WithBuildVersion((int)build),
+                .WithPatchVersion((int)patch.Value.Item1)
+                .WithBuildVersion((int)build.Value.Item1)
+                .WithTagName(build.Value.Item2),
                 rest3);
         }
 
@@ -79,6 +82,23 @@ namespace Netsoft.Versioning
             }
 
             return (n, source[1..^0]);
+        }
+
+        public static ((uint, string)?, string[]) ParseNumberWithTag(string[] source) 
+        {
+            if (source == null || source.Length == 0)
+            {
+                return (null, source);
+            }
+
+            string[] x = source[0].Split("-");
+            string tag = x.Length > 1 ? x[1] : "";
+            if (!uint.TryParse(x[0], out uint n))
+            {
+                return (null, source);
+            }
+
+            return ((n, tag), source[1..^0]);
         }
 
         public static (uint?, string[]) ParsePositiveNumber(string[] source)

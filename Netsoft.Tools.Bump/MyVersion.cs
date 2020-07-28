@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Netsoft.Versioning
 {
@@ -36,8 +36,12 @@ namespace Netsoft.Versioning
             return this;
         }
 
-        private MyVersion WithTagName(string tag)
+        public MyVersion WithTagName(string tag)
         {
+            if(tag == "")
+            {
+                tag = null;
+            }
             _tag = tag;
             return this;
         }
@@ -105,9 +109,9 @@ namespace Netsoft.Versioning
             return AppendTag($"{_major}.{_minor}");
         }
 
-        private String AppendTag(string value) 
+        private string AppendTag(string value) 
         {
-            return String.IsNullOrEmpty(_tag) 
+            return string.IsNullOrEmpty(_tag) 
             ? value
             : $"{value}-${_tag}";
         }
