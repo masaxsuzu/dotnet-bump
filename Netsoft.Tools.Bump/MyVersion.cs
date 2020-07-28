@@ -113,7 +113,7 @@ namespace Netsoft.Versioning
         {
             return string.IsNullOrEmpty(_tag) 
             ? value
-            : $"{value}-${_tag}";
+            : $"{value}-{_tag}";
         }
     }
 }
