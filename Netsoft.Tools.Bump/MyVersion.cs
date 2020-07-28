@@ -46,26 +46,30 @@ namespace Netsoft.Versioning
         {
             return new MyVersion(_major + 1, 0)
                 .WithPatchVersion(0)
-                .WithBuildVersion(0);
+                .WithBuildVersion(0)
+                .WithTagName(_tag);
         }
         public MyVersion UpMinorVersion()
         {
             return new MyVersion(_major, _minor + 1)
                 .WithPatchVersion(0)
-                .WithBuildVersion(0);
+                .WithBuildVersion(0)
+                .WithTagName(_tag);
         }
         public MyVersion UpPatchVersion()
         {
             return new MyVersion(_major, _minor)
                 .WithPatchVersion(_patch + 1)
-                .WithBuildVersion(0);
+                .WithBuildVersion(0)
+                .WithTagName(_tag);
         }
 
         public MyVersion UpBuildVersion()
         {
             return new MyVersion(_major, _minor)
                 .WithPatchVersion(_patch)
-                .WithBuildVersion(_build + 1);
+                .WithBuildVersion(_build + 1)
+                .WithTagName(_tag);
         }
 
         public bool Equals(MyVersion other)
@@ -85,19 +89,27 @@ namespace Netsoft.Versioning
 
         public override string ToString()
         {
-            return $"{_major}.{_minor}.{_patch}.{_build}";
+            return AppendTag($"{_major}.{_minor}.{_patch}.{_build}");
         }
+
         public string Format()
         {
             if (_build != 0)
             {
-                return $"{_major}.{_minor}.{_patch}.{_build}";
+                return AppendTag($"{_major}.{_minor}.{_patch}.{_build}");
             }
             if (_patch != 0)
             {
-                return $"{_major}.{_minor}.{_patch}";
+                return AppendTag($"{_major}.{_minor}.{_patch}");
             }
-            return $"{_major}.{_minor}";
+            return AppendTag($"{_major}.{_minor}");
+        }
+
+        private String AppendTag(string value) 
+        {
+            return String.IsNullOrEmpty(_tag) 
+            ? value
+            : $"{value}-${_tag}";
         }
     }
 }
